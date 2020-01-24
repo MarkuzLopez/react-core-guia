@@ -1,0 +1,151 @@
+import React from  'react';
+import ReactDOM from 'react-dom';
+
+// en los componentes de clase los datos se enbvia por medio del this.props.
+// y siempre tiene un estado inicial.
+class TarjetaFruta extends React.Component {
+
+    ///* nota cuando los metodos son declardos como funcionales y el componente es una clase hereda el this. y no es necesario bindearlo 
+
+    state = { 
+        cantidad: 0
+    }
+
+    agregar = () => {
+        this.setState({
+            cantidad: this.state.cantidad + 1
+        })
+    }
+
+    quitar = () => { 
+        this.setState({
+            cantidad: this.state.cantidad -1
+        })
+    }
+
+    limpiar = () => { 
+        this.setState({
+            cantidad: 0
+        })
+    }
+
+    // constructor() {
+    //     super()
+    //     // para agregar diferentes metodos se tiene que bindeaar para no hacerlo en el boton 
+    //     // this.agregar = this.agregar.bind(this);
+    //     // this.quitar = this.quitar.bind(this);     
+        
+    //     /* TODO para solucionar el problema de no agregaar varios metodo bindenadolos se creara un metodo de aarreglos y se bindee por medio de un foreach   */
+        
+    //     //* se crea una constante de tipo arreglo, donde se declare todos los metodos del componente 
+    //     const METHODS = [
+    //         'agregar',
+    //         'quitar',
+    //         'limpiar'
+    //     ];
+
+    //     //* se realiza una iteracion de los metodos y se agrega el bind
+    //     METHODS.forEach((metodo) => {
+    //         this[metodo] = this[metodo].bind(this)
+    //     })
+ 
+    //     this.state = {
+    //         cantidad: 0
+    //     }
+    // }
+
+    agregar(){
+        this.setState({
+            cantidad: this.state.cantidad + 1
+        })
+    }
+
+    quitar(){
+        this.setState({
+            cantidad: this.state.cantidad - 1
+        })
+    }
+
+    limpiar() {
+        this.setState({
+            cantidad: 0
+        })
+    }
+
+    render(){
+        return(
+            <div>
+                <h1>{this.props.name}</h1><br />
+            <div>Cantidad: { this.state.cantidad}</div>
+
+            <button onClick={this.agregar} >Agregar + </button>
+            <button onClick={this.quitar} >Quitar - </button>
+            <button onClick={this.limpiar} >Clean</button>
+
+            {/* se tiene que bindear paara que apunte a la clase y no aal maetodo de agregar */}
+            {/* <button onClick={this.agregar.bind(this)} >Agregar</button> */}
+
+            {/* <button 
+                onClick={() => {
+                    this.setState({ 
+                        cantidad: this.state.cantidad + 1
+                    })
+                }}
+            >Agregar</button> */}
+                <p>{this.props.price}</p>
+            </div>
+        )
+    }
+}
+
+// en los componentes los propps se pasan por la funcion del componente
+// const TarjetaFruta = (props) => { 
+//     return(
+//         <div>
+//             <h1>{props.name}</h1><br />
+//             <p>{props.price}</p>
+//         </div>
+//     )
+// }
+
+const App = () => { 
+    return (
+        <div>
+            <TarjetaFruta name={'Naranja'} price={5.3} />
+            <TarjetaFruta name={'Morado'} price={3.5} />
+        </div>
+    )
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+
+// segundo ejempolo const name = 'Markuz Lopez';
+
+// const user1 = { 
+//     name: 'Markuz Lopez',
+//     age: 27,
+//     country: 'Mexico'
+// }
+
+// function getInfo(user){
+//     return `Hola mi nombre es ${user.name} y soy de ${user.country}`;
+// }
+
+// const App = <h1>{getInfo(user1)}</h1>
+
+// ReactDOM.render(App, document.getElementById('root'));
+
+
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import './index.css';
+// import App from './App';
+// import * as serviceWorker from './serviceWorker';
+
+// ReactDOM.render(<App />, document.getElementById('root'));
+
+// // If you want your app to work offline and load faster, you can change
+// // unregister() to register() below. Note this comes with some pitfalls.
+// // Learn more about service workers: https://bit.ly/CRA-PWA
+// serviceWorker.unregister();
